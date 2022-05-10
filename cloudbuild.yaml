@@ -32,7 +32,8 @@ steps:
   args:
   - '-c'
   - >
-    gcloud container clusters get-credentials --zone=europe-north1 primary;
+    gcloud container clusters get-credentials --zone=europe-north1-a primary;
+#gcloud build submit --config=cloudbuild.yaml -substitutions= _ZONE=europe,_CLUSTER=demo-app-staging .
     skaffold run --filename='skaffold.yaml' --default-repo=gcr.io/testing-baidar
 
 # Add more power, and more time, for heavy Skaffold build
