@@ -111,3 +111,43 @@ spec:
   - name: http
     port: 80
     targetPort: 8080
+
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: nc-case-ssl-cert
+spec:
+  domains:
+    - nc-case-prod.tk
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: managed-cert-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: ssl-address
+    networking.gke.io/managed-certificates: nc-case-ssl-cert
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: "frontend-external"
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: "/*"
+        backend:
+          service:
+            name: "frontend-external"
+            port:
+              number: 80
+        pathType: "ImplementationSpecific"
+    host: "nc-case-prod.tk"
+status:
+  loadBalancer: {}
+
