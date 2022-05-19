@@ -62,7 +62,7 @@ deploy:
     - ./kubernetes-manifests/recommendationservice.yaml
    # - ./kubernetes-manifests/redis.yaml
     - ./kubernetes-manifests/shippingservice.yaml
-    - ./kubernetes-manifests/cluseteringress.yaml
+   # - ./kubernetes-manifests/cluseteringress.yaml
 profiles:
 # "gcb" profile allows building and pushing the images
 # on Google Container Builder without requiring docker
@@ -106,3 +106,10 @@ deploy:
   kubectl:
     manifests:
     - ./kubernetes-manifests/loadgenerator.yaml
+
+---
+
+deploy:
+  kubectl:
+    manifests:
+    - ./kubernetes-manifests/cluseteringress.yaml
