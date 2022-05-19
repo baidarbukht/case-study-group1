@@ -33,8 +33,7 @@ steps:
   - '-c'
   - >
     gcloud container clusters get-credentials --zone=europe-north1 primary;
-    skaffold run --filename='skaffold.yaml' --default-repo=gcr.io/testing-baidar
-
+    skaffold run --filename='skaffold.yaml' --default-repo=gcr.io/case-study-prod
 # Add more power, and more time, for heavy Skaffold build
 timeout: '3600s'
 options:

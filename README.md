@@ -45,6 +45,7 @@ gcloud services enable monitoring.googleapis.com \
     cloudtrace.googleapis.com \
     clouddebugger.googleapis.com \
     cloudprofiler.googleapis.com \
+    dns.googleapis.com \
     --project ${PROJECT_ID}
 ```
 
